@@ -7,12 +7,13 @@ To use it my own projects and practice decorators and console output styling
 # How to use?
 
 ```python
-from logging import *
+import dlogging as log
 
-debug('debug')
-info('info')
-warning('warning')
-error('error')
-critical('critical')
-info_forced('info_forced')
+
+log.debug('test_log')
+log.info('test_log')
+log.warning('test_log')
+log.error('test_log')
+log.critical('test_log')
+log.info_forced('test_log')
 ``` 
