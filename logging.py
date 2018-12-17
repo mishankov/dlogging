@@ -9,13 +9,13 @@ import json
 # load configs
 try:
 	# try to load configs from file
-	file = open('dlogging.json', 'r')
+	file = open(os.getcwd() + '/dlogging.json', 'r')
 	config = json.load(file)
 	file.close()
 except FileNotFoundError as e:
 	# if there is no config => create file with default configs
 	config = DEFAULT_CONFIG
-	file = open('dlogging.json', 'w')
+	file = open(os.getcwd() + '/dlogging.json', 'w')
 	json.dump(config, file, indent=2)
 	file.close()
 
