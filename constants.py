@@ -1,6 +1,3 @@
-LOG_TEMPLATE = '[{date}][{file}]{style}[{mode}]\33[0m - {message}'
-FILE_TEMPLATE = '{}:{}'
-
 DEFAULT_CONFIG = {
 	"log_template": "[{date}][{file}]{style}[{mode}]{endstyle} - {message}",
 	"file_template": "{}:{}",
@@ -28,4 +25,12 @@ DEFAULT_CONFIG = {
 		"output": ["console"],
 		"style": ["bold", "red_background"]
 	}
+}
+
+STYLE_DICT = {
+	"bold": "1",
+	"cyan": "96",
+	"yellow": "93",
+	"red": "91",
+	"red_background": "101"
 }
