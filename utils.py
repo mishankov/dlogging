@@ -1,6 +1,6 @@
 from time import gmtime, strftime
 from inspect import getframeinfo, stack
-from .constants import STYLE_DICT
+from .constants import STYLE_DICT, LOG_LEVELS_DICT
 
 def style_list_to_str(style_list):
 	if len(style_list) == 2:
@@ -13,8 +13,12 @@ def style_list_to_str(style_list):
 		return '\33[0m'
 
 def upgrade_config(config):
+	# convert style from words to codes
 	for level in ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']:
 		config[level]['style'] = style_list_to_str(config[level]['style'])
+
+	# convert level from word to number
+	config["level"] = LOG_LEVELS_DICT[config["level"]]
 
 	return config
 

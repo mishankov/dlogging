@@ -26,20 +26,21 @@ def log(fn):
 		d = fn(message)
 		caller = getframeinfo(stack()[1][0])
 
-		print(utils.fill_template(
-				config['log_template'], 
-				caller, 
-				d, 
-				message, 
-				config[d['mode']]['style']
-				))
+		if config['level'] <= d['level']:
+			print(utils.fill_template(
+					config['log_template'], 
+					caller, 
+					d, 
+					message, 
+					config[d['mode']]['style']
+					))
 	return wrapper
 
 @log
 def debug(message):
 	d = {
 		'mode': 'DEBUG',
-		'style': '\33[1m'
+		'level': 0
 	}
 	return d
 
@@ -47,7 +48,7 @@ def debug(message):
 def info(message):
 	d = {
 		'mode': 'INFO',
-		'style': '\33[1;96m'
+		'level': 1
 	}
 	return d	
 
@@ -55,7 +56,7 @@ def info(message):
 def warning(message):
 	d = {
 		'mode': 'WARNING',
-		'style': '\33[1;93m'
+		'level': 2
 	}
 	return d
 
@@ -63,7 +64,7 @@ def warning(message):
 def error(message):
 	d = {
 		'mode': 'ERROR',
-		'style': '\33[1;91m'
+		'level': 3
 	}
 	return d
 
@@ -71,7 +72,7 @@ def error(message):
 def critical(message):
 	d = {
 		'mode': 'CRITICAL',
-		'style': '\33[1;101m'
+		'level': 4
 	}
 	return d
 
@@ -79,7 +80,7 @@ def critical(message):
 def info_forced(message):
 	d = {
 		'mode': 'INFO',
-		'style': '\33[1;96m'
+		'level': 99
 	}
 	return d
 

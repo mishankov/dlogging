@@ -34,3 +34,12 @@ STYLE_DICT = {
 	"red": "91",
 	"red_background": "101"
 }
+
+LOG_LEVELS_DICT = {
+	"DEBUG": 0,
+	"INFO": 1,
+	"WARNING": 2,
+	"ERROR": 3,
+	"CRITICAL": 4,
+	"INFO_FORCED": 99
+}
