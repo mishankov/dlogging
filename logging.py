@@ -27,12 +27,12 @@ def log(fn):
 		caller = getframeinfo(stack()[1][0])
 
 		print(utils.fill_template(
-			config['log_template'], 
-			caller, 
-			d, 
-			message, 
-			config[d['mode']]['style']
-			))
+				config['log_template'], 
+				caller, 
+				d, 
+				message, 
+				config[d['mode']]['style']
+				))
 	return wrapper
 
 @log
@@ -83,4 +83,5 @@ def info_forced(message):
 	}
 	return d
 
-info_forced('Current logging configuration is\n{}'.format(json.dumps(config, indent=2)))
+# FIX ME: use dlogging-light here
+# info_forced('Current logging configuration is\n{}'.format(json.dumps(config, indent=2)))

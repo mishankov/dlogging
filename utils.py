@@ -23,27 +23,27 @@ def fill_template(template, caller, d, message, style):
 	template = str(template)
 	
 	# add date
-	if '{date}' in template:
+	while '{date}' in template:
 		template = template.replace('{date}', strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 	# add file and line from where logging was called
-	if '{file}' in template:
+	while '{file}' in template:
 		template = template.replace('{file}', '{}:{}'.format(caller.filename, caller.lineno))
 
 	# add logging mode like 'DEGUG'
-	if '{mode}' in template:
+	while '{mode}' in template:
 		template = template.replace('{mode}', d['mode'])
 		
 	# add start text styling
-	if '{style}' in template:
+	while '{style}' in template:
 		template = template.replace('{style}', str(style))
 
 	# add close text styling
-	if '{endstyle}' in template:
+	while '{endstyle}' in template:
 		template = template.replace('{endstyle}', '\33[0m')
 
 	# add message
-	if '{message}' in template:
+	while '{message}' in template:
 		template = template.replace('{message}', message)
 
 	return template
