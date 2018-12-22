@@ -27,13 +27,38 @@ def log(fn):
 		caller = getframeinfo(stack()[1][0])
 
 		if config['level'] <= d['level']:
-			print(utils.fill_template(
-					config['log_template'], 
-					caller, 
-					d, 
-					message, 
-					config[d['mode']]['style']
-					))
+			for output in config[d['mode']]['outputs']:
+				# log in console
+				if output['type'] == 'console':
+					print(utils.fill_template(
+							config['log_template'], 
+							caller, 
+							d, 
+							message, 
+							output['style']
+							))
+
+				# log in file
+				if output['type'] == 'file':
+					path = output['path']
+					if '{wd}' in path:
+						path = path.replace('{wd}', os.getcwd())
+
+					name = output['name']
+
+					try:
+						file = open(path + '/' + name, 'a')
+					except FileNotFoundError as e:
+						os.makedirs(os.path.dirname(path + '/' + name), exist_ok=True)
+						file = open(path + '/' + name, 'w')
+					file.write(utils.fill_template(
+							config['log_template'], 
+							caller, 
+							d, 
+							message, 
+							''
+							) + '\n')
+					file.close()
 	return wrapper
 
 @log

@@ -1,30 +1,86 @@
 DEFAULT_CONFIG = {
-	"log_template": "[{date}][{file}]{style}[{mode}]{endstyle} - {message}",
-	"file_template": "{}:{}",
-	"level": "DEBUG",
-	"DEBUG": {
-		"output": ["console"],
-		"style": ["bold"]
-	}, 
-	"INFO": {
-		"output": ["console"],
-		"style": ["bold", "cyan"]
-	}
-	, 
-	"WARNING": {
-		"output": ["console"],
-		"style": ["bold", "yellow"]
-	}
-	, 
-	"ERROR": {
-		"output": ["console"],
-		"style": ["bold", "red"]
-	}
-	, 
-	"CRITICAL": {
-		"output": ["console"],
-		"style": ["bold", "red_background"]
-	}
+  "log_template": "[{date}][{file}]{style}[{mode}]{endstyle} - {message}",
+  "file_template": "{}:{}",
+  "level": "DEBUG",
+  "DEBUG": {
+    "outputs": [
+      {
+        "type": "console",
+        "style": [
+          "bold"
+        ]
+      }
+    ]
+  },
+  "INFO": {
+    "outputs": [
+      {
+        "type": "console",
+        "style": [
+          "bold",
+          "cyan"
+        ]
+      },
+      {
+        "type": "file",
+        "path": "{wd}/LOGS",
+        "name": "dloggingOut.log"
+      }
+    ]
+  },
+  "WARNING": {
+    "outputs": [
+      {
+        "type": "console",
+        "style": [
+          "bold",
+          "yellow"
+        ]
+      },
+      {
+        "type": "file",
+        "path": "{wd}/LOGS",
+        "name": "dloggingOut.log"
+      }
+    ]
+  },
+  "ERROR": {
+    "outputs": [
+      {
+        "type": "console",
+        "style": [
+          "bold",
+          "red"
+        ]
+      },
+      {
+        "type": "file",
+        "path": "{wd}/LOGS",
+        "name": "dloggingOut.log"
+      }
+    ]
+  },
+  "CRITICAL": {
+    "outputs": [
+      {
+        "type": "console",
+        "style": [
+          "bold",
+          "red_background"
+        ]
+      },
+      {
+        "type": "file",
+        "path": "{wd}/LOGS",
+        "name": "dloggingOut.log"
+      },
+      {
+        "type": "file",
+        "path": "{wd}/LOGS",
+        "name": "dloggingOutCritical.log"
+      }
+    ]
+  }
 }
 
 STYLE_DICT = {

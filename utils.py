@@ -1,5 +1,6 @@
 from time import gmtime, strftime
 from inspect import getframeinfo, stack
+import os
 from .constants import STYLE_DICT, LOG_LEVELS_DICT
 
 def style_list_to_str(style_list):
@@ -15,7 +16,15 @@ def style_list_to_str(style_list):
 def upgrade_config(config):
 	# convert style from words to codes
 	for level in ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']:
-		config[level]['style'] = style_list_to_str(config[level]['style'])
+		for i in range(0, len(config[level]['outputs'])):
+			if config[level]['outputs'][i]['type'] == 'console':
+				config[level]['outputs'][i]['style'] = style_list_to_str(config[level]['outputs'][i]['style'])
+
+	# rewrite logging level from enviromental variable
+	try:
+		config["level"] = os.environ['LOGGING_LEVEL']
+	except e:
+		pass
 
 	# convert level from word to number
 	config["level"] = LOG_LEVELS_DICT[config["level"]]
@@ -44,7 +53,10 @@ def fill_template(template, caller, d, message, style):
 
 	# add close text styling
 	while '{endstyle}' in template:
-		template = template.replace('{endstyle}', '\33[0m')
+		if style == '':
+			template = template.replace('{endstyle}', '')
+		else:
+			template = template.replace('{endstyle}', '\33[0m')
 
 	# add message
 	while '{message}' in template:
