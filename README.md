@@ -111,11 +111,13 @@ Like this
 ```
 
 ## What does it all means?
-**log_template** - string template for your logs. You can use this tags to put data in it:
+### log_template
+String template for your logs. You can use this tags to put data in it:
 - `{date}` - date-time in `YYYY-MM-DD hh:mm:ss` format
 - `{file}` - file, from where logging was called
 - `{style}` and `{endstyle}` - where style formatting for console output starts and ends
 - `{message}` - logging message
 
-**level** - logging level like `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`. How logging levels works:
+### level
+Logging level like `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`. How logging levels works:
 ...
