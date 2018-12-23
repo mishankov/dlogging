@@ -116,5 +116,6 @@ Like this
 - `{file}` - file, from where logging was called
 - `{style}` and `{endstyle}` - where style formatting for console output starts and ends
 - `{message}` - logging message
+
 **level** - logging level like `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`. How logging levels works:
 ...
