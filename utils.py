@@ -22,7 +22,7 @@ def upgrade_config(config):
 
 	# rewrite logging level from enviromental variable
 	try:
-		config["level"] = os.environ['LOGGING_LEVEL']
+		config["level"] = os.getenv('LOGGING_LEVEL', 'DEBUG')
 	except e:
 		pass
 
