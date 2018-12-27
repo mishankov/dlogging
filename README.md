@@ -119,5 +119,21 @@ String template for your logs. You can use this tags to put data in it:
 - `{message}` - logging message
 
 ### level
-Logging level like `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`. How logging levels works:
-...
+Logging level like `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`. How logging levels works? Simple example:
+
+If your logging level set to `INFO`, only messages with logging level higher then `INFO` (`WARNING`, `ERROR`, `CRITICAL` or `INFO_FORCED`) would be written.
+
+### DEBUG, INFO, WARNING, ERROR, CRITICAL
+Then there is field for each logging level except of `INFO_FORCED`. In each that field you can configure outputs with **outputs** list
+
+#### outputs > type
+It can be `console` or `file` to write your logs to console or file respectively
+
+#### outputs > style
+If **type** field equals `console` this list represents which would be used in `{style}` tag in **log_template**. Can hold up to 2 strings
+
+#### outputs > path
+If **type** field equals `file` this field represents path to your log file. Tag `{wd}` means your working directory
+
+#### outputs > name
+If **type** field equals `file` this field represents name of your log file
