@@ -40,8 +40,12 @@ def fill_template(template, caller, d, message, style):
 		template = template.replace('{date}', strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 	# add file and line from where logging was called
+	if (os.getcwd() in caller.filename):
+		filename = caller.filename.replace(os.getcwd() + '/', '')
+	else:
+		filename = caller.filename
 	while '{file}' in template:
-		template = template.replace('{file}', '{}:{}'.format(caller.filename, caller.lineno))
+		template = template.replace('{file}', '{}:{}'.format(filename, caller.lineno))
 
 	# add logging mode like 'DEGUG'
 	while '{mode}' in template:
